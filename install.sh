@@ -4,7 +4,7 @@ command_exists () {
     type "$1" &> /dev/null ;
 }
 
-if ! xcode-select -p ; then
+if ! xcode-select -p &> /dev/null ; then
 	touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
 	PROD=$(softwareupdate -l | grep "\*.*Command Line" | head -n 1 | awk -F"*" '{print $2}' | sed -e 's/^ *//' | tr -d '\n')
 	softwareupdate -i "$PROD" -v
@@ -52,7 +52,7 @@ else
 	upgrade_oh_my_zsh
 fi
 
-if ! brew list zsh-syntax-highlighting &> /dev/null; then
+if ! brew list zsh-syntax-highlighting &> /dev/null ; then
 	brew install zsh-syntax-highlighting
 else
 	echo "zsh completion already installed"
