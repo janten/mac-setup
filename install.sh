@@ -10,7 +10,15 @@ cp gitignore_global ~/.gitignore_global
 cp com.apple.Terminal.plist ~/Library/Preferences/com.apple.Terminal.plist
 cp "Inconsolata for Powerline.otf" ~/Library/Fonts/
 
-# Install some tools if not installed already
+if ! xcode-select -p ; then
+	touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
+	PROD=$(softwareupdate -l | grep "\*.*Command Line" | head -n 1 | awk -F"*" '{print $2}' | sed -e 's/^ *//' | tr -d '\n')
+	softwareupdate -i "$PROD" -v
+else
+	echo "Command Line Tools already installed"
+	return 0
+fi
+
 if ! command_exists brew ; then
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 else
