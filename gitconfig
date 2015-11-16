@@ -1,0 +1,10 @@
+[user]
+	name = Jan-Gerd Tenberge
+	email = janten@gmail.com
+[core]
+	editor = mate -w
+	excludesfile = ~/.gitignore_global
+[push]
+	default = matching
+[color]
+	ui = true
