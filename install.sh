@@ -4,12 +4,6 @@ command_exists () {
     type "$1" &> /dev/null ;
 }
 
-cp zshrc ~/.zshrc
-cp gitconfig ~/.gitconfig
-cp gitignore_global ~/.gitignore_global
-cp com.apple.Terminal.plist ~/Library/Preferences/com.apple.Terminal.plist
-cp "Inconsolata for Powerline.otf" ~/Library/Fonts/
-
 if ! xcode-select -p ; then
 	touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
 	PROD=$(softwareupdate -l | grep "\*.*Command Line" | head -n 1 | awk -F"*" '{print $2}' | sed -e 's/^ *//' | tr -d '\n')
@@ -18,6 +12,15 @@ else
 	echo "Command Line Tools already installed"
 	return 0
 fi
+
+git clone https://github.com/janten/mac-setup.git /tmp/mac-setup
+cd /tmp/mac-setup
+
+cp zshrc ~/.zshrc
+cp gitconfig ~/.gitconfig
+cp gitignore_global ~/.gitignore_global
+cp com.apple.Terminal.plist ~/Library/Preferences/com.apple.Terminal.plist
+cp "Inconsolata for Powerline.otf" ~/Library/Fonts/
 
 if ! command_exists brew ; then
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
