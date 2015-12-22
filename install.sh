@@ -11,7 +11,6 @@ if ! xcode-select -p &> /dev/null ; then
 	softwareupdate -i "$PROD"
 else
 	echo "Command Line Tools already installed"
-	return 0
 fi
 
 if ! command_exists brew ; then
