@@ -15,14 +15,18 @@ fi
 
 if ! command_exists brew ; then
 	echo "Installing Homebrew"
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 else
 	echo "Homebrew already installed"
 fi
 
+echo "Updating Homebrew"
+brew update
+brew upgrade
+
 if ! command_exists brew-cask ; then
 	echo "Installing brew-cask"
-    brew install caskroom/cask/brew-cask
+	brew install caskroom/cask/brew-cask
 else
 	echo "brew-cask already installed"
 fi
@@ -36,7 +40,7 @@ fi
 
 if ! command_exists wget ; then
 	echo "Installing wget"
-    brew install wget
+	brew install wget
 else
 	echo "wget already installed"
 fi
