@@ -43,7 +43,6 @@ fi
 
 echo "Updating brew-cask"
 brew cask update
-brew cask upgrade
 
 if ! command_exists mate
 then
