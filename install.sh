@@ -33,17 +33,6 @@ echo "Updating Homebrew"
 brew update
 brew upgrade
 
-if ! command_exists brew-cask
-then
-	echo "Installing brew-cask"
-	brew install caskroom/cask/brew-cask
-else
-	echo "brew-cask already installed"
-fi
-
-echo "Updating brew-cask"
-brew cask update
-
 if ! command_exists mate
 then
 	echo "Installing TextMate"
