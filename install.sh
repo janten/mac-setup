@@ -58,31 +58,27 @@ else
 	echo "Some SSH keys already present"
 fi
 
-if ! command_exists upgrade_oh_my_zsh
+if ! command_exists fish
 then
-	echo "Installing oh-my-zsh"
-	sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+	echo "Installing fish"
+        brew install fish
+        sudo echo "/usr/local/bin/fish" >> /etc/shells
+        chsh -s /usr/local/bin/fish
 else
-	upgrade_oh_my_zsh
+	echo "The fish shell is already installed"
 fi
 
-if ! brew list zsh-syntax-highlighting &> /dev/null
-then
-	echo "Installing zsh-syntax-highlighting"
-	brew install zsh-syntax-highlighting
-else
-	echo "zsh-syntax-highlighting already installed"
-fi
+echo "Installing vim"
+brew install vim --with-python3 --with-override-system-vi
 
 echo "Cloning mac-setup"
 git clone https://github.com/janten/mac-setup.git /tmp/mac-setup
 
 echo "Setting preferences"
-cp /tmp/mac-setup/zshrc ~/.zshrc
 cp /tmp/mac-setup/gitconfig ~/.gitconfig
+cp /tmp/mac-setup/vimrc ~/.vimrc
 cp /tmp/mac-setup/gitignore_global ~/.gitignore_global
 cp /tmp/mac-setup/com.apple.Terminal.plist ~/Library/Preferences/com.apple.Terminal.plist
-cp "/tmp/mac-setup/Inconsolata for Powerline.otf" ~/Library/Fonts/
 
 echo "Cleaning up"
 brew cleanup
