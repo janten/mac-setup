@@ -10,7 +10,7 @@ sudo ntpdate -u 1.de.pool.ntp.org time.uni-muenster.de
 echo "Updating software"
 softwareupdate --install --all
 
-if ! xcode-select -p &> /dev/null
+if ! xcode-select -p > /dev/null 2>&1
 then
 	echo "Installing Command Line Tools"
 	touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
