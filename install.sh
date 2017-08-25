@@ -5,8 +5,7 @@ command_exists () {
 }
 
 echo "Setting time and date"
-sudo ntpdate -u time.uni-muenster.de
-sudo ntpdate -u 1.de.pool.ntp.org
+sudo ntpdate -u 1.de.pool.ntp.org time.uni-muenster.de
 
 echo "Updating software"
 softwareupdate --install --all
@@ -62,9 +61,8 @@ if ! command_exists antigen
 then
     echo "Installing antigen"
     brew install antigen
-    chsh -s /bin/fish
 else
-	echo "The fish shell is already installed"
+	echo "Antigen is already installed"
 fi
 
 echo "Installing vim"
@@ -80,10 +78,15 @@ cp /tmp/mac-setup/zshrc ~/.zshrc
 cp /tmp/mac-setup/gitignore_global ~/.gitignore_global
 cp /tmp/mac-setup/com.apple.Terminal.plist ~/Library/Preferences/com.apple.Terminal.plist
 
+echo "Changing shell to ZSH"
+sudo chsh -s /bin/zsh janten
+
+echo "Setting up ZSH"
+zsh -c ""
+
 echo "Cleaning up"
 brew cleanup
 brew cask cleanup
 rm -rf /tmp/mac-setup
 
-echo "Installation complete. You should restart your terminal."
-zsh
+echo "Installation complete. Restart your terminal."
