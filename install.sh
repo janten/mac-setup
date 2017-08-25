@@ -58,12 +58,11 @@ else
 	echo "Some SSH keys already present"
 fi
 
-if ! command_exists fish
+if ! command_exists antigen
 then
-	echo "Installing fish"
-        brew install fish
-        sudo echo "/usr/local/bin/fish" >> /etc/shells
-        chsh -s /usr/local/bin/fish
+    echo "Installing antigen"
+    brew install antigen
+    chsh -s /bin/fish
 else
 	echo "The fish shell is already installed"
 fi
@@ -77,6 +76,7 @@ git clone https://github.com/janten/mac-setup.git /tmp/mac-setup
 echo "Setting preferences"
 cp /tmp/mac-setup/gitconfig ~/.gitconfig
 cp /tmp/mac-setup/vimrc ~/.vimrc
+cp /tmp/mac-setup/zshrc ~/.zshrc
 cp /tmp/mac-setup/gitignore_global ~/.gitignore_global
 cp /tmp/mac-setup/com.apple.Terminal.plist ~/Library/Preferences/com.apple.Terminal.plist
 
@@ -86,3 +86,4 @@ brew cask cleanup
 rm -rf /tmp/mac-setup
 
 echo "Installation complete. You should restart your terminal."
+zsh
