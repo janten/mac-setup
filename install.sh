@@ -49,6 +49,14 @@ else
 	echo "wget already installed"
 fi
 
+if ! command_exists http
+then
+	echo "Installing httpie"
+	brew install httpie
+else
+	echo "httpie already installed"
+fi
+
 if [ ! -f ~/.ssh/authorized_keys ]
 then
 	echo "Installing SSH keys from GitHub"
@@ -56,6 +64,14 @@ then
 	curl "https://github.com/janten.keys" > ~/.ssh/authorized_keys
 else
 	echo "Some SSH keys already present"
+fi
+
+if ! brew cask list keypad-layout 2>/dev/null
+then
+    echo "Installing Keypad Layout"
+    brew cask install keypad-layout
+else
+	echo "Keypad Layout is already installed"
 fi
 
 if [ ! -f "/usr/local/share/antigen/antigen.zsh" ]
