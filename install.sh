@@ -66,7 +66,7 @@ else
 	echo "Some SSH keys already present"
 fi
 
-if ! brew cask list keypad-layout 2>/dev/null
+if ! brew cask list keypad-layout > /dev/null 2>&1
 then
     echo "Installing Keypad Layout"
     brew cask install keypad-layout
@@ -82,8 +82,13 @@ else
 	echo "Antigen is already installed"
 fi
 
-echo "Installing vim"
-brew install vim --with-python3 --with-override-system-vi
+if ! brew list vim > /dev/null 2>&1
+then
+    echo "Installing vim"
+    brew install vim --with-python3 --with-override-system-vi
+else
+    echo "Vim is already installed"
+fi
 
 echo "Cloning mac-setup"
 git clone https://github.com/janten/mac-setup.git /tmp/mac-setup
