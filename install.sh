@@ -16,6 +16,7 @@ then
 	touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
 	PROD=$(softwareupdate -l | grep "\*.*Command Line" | head -n 1 | awk -F"*" '{print $2}' | sed -e 's/^ *//' | tr -d '\n')
 	softwareupdate -i "$PROD"
+	rm /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
 else
 	echo "Command Line Tools already installed"
 fi
@@ -57,7 +58,7 @@ else
 	echo "Some SSH keys already present"
 fi
 
-if ! command_exists antigen
+if [ ! -f "/usr/local/share/antigen/antigen.zsh" ]
 then
     echo "Installing antigen"
     brew install antigen
@@ -82,7 +83,7 @@ echo "Changing shell to ZSH"
 sudo chsh -s /bin/zsh janten
 
 echo "Setting up ZSH"
-zsh -c ""
+zsh ~/.zshrc
 
 echo "Cleaning up"
 brew cleanup
