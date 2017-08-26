@@ -32,6 +32,7 @@ antigen apply
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
+export PURE_PROMPT_SYMBOL="⟩"
 export HOMEBREW_MAKE_JOBS=32
 export PATH="$PATH:$HOME/esp/xtensa-esp32-elf/bin"
 export IDF_PATH="$HOME/esp/esp-idf"
