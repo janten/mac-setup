@@ -90,11 +90,11 @@ echo "Cloning mac-setup"
 git clone https://github.com/janten/mac-setup.git /tmp/mac-setup
 
 echo "Setting preferences"
+defaults import com.apple.Terminal /tmp/mac-setup/com.apple.Terminal.plist
 cp /tmp/mac-setup/gitconfig ~/.gitconfig
 cp /tmp/mac-setup/vimrc ~/.vimrc
 cp /tmp/mac-setup/zshrc ~/.zshrc
 cp /tmp/mac-setup/gitignore_global ~/.gitignore_global
-cp /tmp/mac-setup/com.apple.Terminal.plist ~/Library/Preferences/com.apple.Terminal.plist
 
 echo "Changing shell to ZSH"
 sudo chsh -s /bin/zsh janten
