@@ -4,9 +4,6 @@ command_exists () {
     type "$1" &> /dev/null ;
 }
 
-echo "Setting time and date"
-sudo ntpdate -u 1.de.pool.ntp.org time.uni-muenster.de
-
 echo "Updating software"
 softwareupdate --install --all
 
@@ -57,13 +54,12 @@ else
 	echo "httpie already installed"
 fi
 
-if [ ! -f ~/.ssh/authorized_keys ]
+if [ ! -f ~/.ssh/id_rsa ]
 then
-	echo "Installing SSH keys from GitHub"
-	mkdir ~/.ssh
-	curl "https://github.com/janten.keys" > ~/.ssh/authorized_keys
+	echo "Generating SSH key pair"
+	ssh-keygen -N "" -f ~/.ssh/id_rsa
 else
-	echo "Some SSH keys already present"
+	echo "SSH key pair already exists"
 fi
 
 if ! brew cask list keypad-layout > /dev/null 2>&1
@@ -85,7 +81,7 @@ fi
 if ! brew list vim > /dev/null 2>&1
 then
     echo "Installing vim"
-    brew install vim --with-python3 --with-override-system-vi
+    brew install vim
 else
     echo "Vim is already installed"
 fi
@@ -108,7 +104,6 @@ zsh ~/.zshrc
 
 echo "Cleaning up"
 brew cleanup
-brew cask cleanup
 rm -rf /tmp/mac-setup
 
 echo "Installation complete. Restart your terminal."
