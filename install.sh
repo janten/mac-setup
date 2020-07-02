@@ -38,22 +38,6 @@ else
 	echo "TextMate already installed"
 fi
 
-if ! command_exists wget
-then
-	echo "Installing wget"
-	brew install wget
-else
-	echo "wget already installed"
-fi
-
-if ! command_exists http
-then
-	echo "Installing httpie"
-	brew install httpie
-else
-	echo "httpie already installed"
-fi
-
 if [ ! -f ~/.ssh/id_rsa ]
 then
 	echo "Generating SSH key pair"
