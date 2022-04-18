@@ -58,6 +58,7 @@ if [ ! -f "/usr/local/share/antigen/antigen.zsh" ]
 then
     echo "Installing antigen"
     brew install antigen
+    brew install pure
 else
 	echo "Antigen is already installed"
 fi
