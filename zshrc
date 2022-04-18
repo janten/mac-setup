@@ -1,4 +1,7 @@
-source /usr/local/share/antigen/antigen.zsh
+source /opt/homebrew/share/antigen/antigen.zsh
+
+PATH="$PATH:/opt/homebrew/opt/python@3.9/libexec/bin"
+fpath+=$HOME/.zsh/pure
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
@@ -9,7 +12,7 @@ antigen bundle git
 antigen bundle gitignore
 antigen bundle heroku
 antigen bundle httpie
-antigen bundle osx
+antigen bundle macos
 antigen bundle pip
 antigen bundle pod
 antigen bundle python
@@ -20,19 +23,14 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsmizzle/fixnumpad-osx.plugin.zsh 
+antigen bundle MichaelAquilina/zsh-autoswitch-virtualenv
 
 # Load the theme.
 antigen bundle mafredri/zsh-async
-antigen bundle sindresorhus/pure
  
 # Tell Antigen that you're done.
 antigen apply
 
 # User configuration
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-export PURE_PROMPT_SYMBOL="⟩"
-export HOMEBREW_MAKE_JOBS=32
-export PATH="$PATH:$HOME/esp/xtensa-esp32-elf/bin"
-export IDF_PATH="$HOME/esp/esp-idf"
+autoload -U promptinit; promptinit
+prompt pure
