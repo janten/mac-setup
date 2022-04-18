@@ -58,9 +58,17 @@ if [ ! -f "/usr/local/share/antigen/antigen.zsh" ]
 then
     echo "Installing antigen"
     brew install antigen
-    brew install pure
 else
 	echo "Antigen is already installed"
+fi
+
+if [ ! -f "$HOME/.zsh/pure/pure.zsh" ]
+then
+    echo "Installing pure prompt"
+    mkdir -p "$HOME/.zsh"
+    git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
+else
+    echo "Pure is already installed"
 fi
 
 if ! brew list vim > /dev/null 2>&1
