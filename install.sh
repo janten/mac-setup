@@ -7,17 +7,6 @@ command_exists () {
 echo "Updating software"
 softwareupdate --install --all
 
-if ! xcode-select -p > /dev/null 2>&1
-then
-	echo "Installing Command Line Tools"
-	touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
-	PROD=$(softwareupdate -l | grep "\*.*Command Line" | head -n 1 | awk -F"*" '{print $2}' | sed -e 's/^ *//' | tr -d '\n')
-	softwareupdate -i "$PROD"
-	rm /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
-else
-	echo "Command Line Tools already installed"
-fi
-
 if ! command_exists brew
 then
 	echo "Installing Homebrew"
