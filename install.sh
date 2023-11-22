@@ -22,7 +22,7 @@ brew upgrade
 if ! command_exists mate
 then
 	echo "Installing TextMate"
-	brew cask install textmate
+	brew install textmate --cask
 else
 	echo "TextMate already installed"
 fi
@@ -38,7 +38,7 @@ fi
 if ! brew cask list keypad-layout > /dev/null 2>&1
 then
     echo "Installing Keypad Layout"
-    brew cask install keypad-layout
+    brew install keypad-layout --cask
 else
 	echo "Keypad Layout is already installed"
 fi
