@@ -43,12 +43,12 @@ else
 	echo "Keypad Layout is already installed"
 fi
 
-if [ ! -f "/usr/local/share/antigen/antigen.zsh" ]
+if [ ! -f ~/.zplug ]
 then
-    echo "Installing antigen"
-    brew install antigen
+    echo "Installing zplug"
+    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 else
-	echo "Antigen is already installed"
+	echo "zplug is already installed"
 fi
 
 if [ ! -f "$HOME/.zsh/pure/pure.zsh" ]
