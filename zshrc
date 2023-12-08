@@ -1,36 +1,49 @@
-source /opt/homebrew/share/antigen/antigen.zsh
+source ~/.zplug/init.zsh
 
-PATH="$PATH:/opt/homebrew/opt/python@3.9/libexec/bin"
-fpath+=$HOME/.zsh/pure
+# Supports oh-my-zsh plugins and the like
+zplug "plugins/git", from:oh-my-zsh
+zplug "plugins/docker", from:oh-my-zsh
+zplug "plugins/gitignore", from:oh-my-zsh
+zplug "plugins/httpie", from:oh-my-zsh
+zplug "plugins/linux", from:oh-my-zsh
+zplug "plugins/pip", from:oh-my-zsh
+zplug "plugins/python", from:oh-my-zsh
+zplug "plugins/sudo", from:oh-my-zsh
 
-# Load the oh-my-zsh's library.
-antigen use oh-my-zsh
+# Only macOS
+zplug "lib/clipboard", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
+zplug "plugins/macos", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
 
-# Bundles from the default repo (robbyrussell's oh-my-zsh).
-antigen bundle docker
-antigen bundle git
-antigen bundle gitignore
-antigen bundle heroku
-antigen bundle httpie
-antigen bundle macos
-antigen bundle pip
-antigen bundle pod
-antigen bundle python
-antigen bundle sudo
+# Only Linux
+zplug "plugins/linux", from:oh-my-zsh, if:"[[ $OSTYPE == *linux* ]]"
 
-antigen bundle hlissner/zsh-autopair
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle zsh-users/zsh-completions
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsmizzle/fixnumpad-osx.plugin.zsh 
-antigen bundle MichaelAquilina/zsh-autoswitch-virtualenv
+zplug "zsh-users/zsh-autosuggestions", defer:2
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "zsh-users/zsh-completions", defer:2
+zplug "MichaelAquilina/zsh-autoswitch-virtualenv", defer:2
 
-# Load the theme.
-antigen bundle mafredri/zsh-async
- 
-# Tell Antigen that you're done.
-antigen apply
+zplug mafredri/zsh-async, from:github
+zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
 
-# User configuration
-autoload -U promptinit; promptinit
-prompt pure
+# Install plugins if there are plugins that have not been installed
+if ! zplug check; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+# Then, source plugins and add commands to $PATH
+zplug load
+
+# Menu-style completion
+zstyle ':completion:*' menu select
+zstyle ':completion:*' file-sort modification # Youngest files first
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:*:*:*:descriptions' format '%F{green}-- %d --%f'
+
+# History
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=1000
+setopt INC_APPEND_HISTORY_TIME # No immediate cross-terminal history sharing
