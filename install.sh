@@ -69,7 +69,7 @@ else
 fi
 
 echo "Cloning mac-setup"
-git clone https://github.com/janten/mac-setup.git /tmp/mac-setup
+git clone https://github.com/$USER/mac-setup.git /tmp/mac-setup
 
 echo "Setting preferences"
 defaults import com.apple.Terminal /tmp/mac-setup/com.apple.Terminal.plist
@@ -79,7 +79,7 @@ cp /tmp/mac-setup/zshrc ~/.zshrc
 cp /tmp/mac-setup/gitignore_global ~/.gitignore_global
 
 echo "Changing shell to ZSH"
-sudo chsh -s /bin/zsh janten
+sudo chsh -s /bin/zsh $USER
 
 echo "Setting up ZSH"
 zsh ~/.zshrc
