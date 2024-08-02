@@ -69,7 +69,7 @@ else
 fi
 
 echo "Cloning mac-setup"
-git clone https://github.com/$USER/mac-setup.git /tmp/mac-setup
+git clone https://github.com/janten/mac-setup.git /tmp/mac-setup
 
 echo "Setting preferences"
 defaults import com.apple.Terminal /tmp/mac-setup/com.apple.Terminal.plist
