@@ -1,39 +1,39 @@
 [user]
-	name = Jan-Gerd Tenberge
-	email = janten@gmail.com
+    name = Jan-Gerd Tenberge
+    email = janten@gmail.com
 [core]
-	editor = vim
+    editor = vim
 [color]
-	ui = true
+    ui = true
 [column]
-        ui = auto
+    ui = auto
 [branch]
-        sort = -committerdate
+    sort = -committerdate
 [tag]
-        sort = version:refname
+    sort = version:refname
 [init]
-        defaultBranch = main
+    defaultBranch = main
 [diff]
-        algorithm = histogram
-        colorMoved = plain
-        mnemonicPrefix = true
-        renames = true
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
 [push]
-        default = simple
-        autoSetupRemote = true
-        followTags = true
+    default = simple
+    autoSetupRemote = true
+    followTags = true
 [fetch]
-        prune = true
-        pruneTags = true
-        all = true
+    prune = true
+    pruneTags = true
+    all = true
 [help]
-        autocorrect = prompt
+    autocorrect = prompt
 [commit]
-        verbose = true
+    verbose = true
 [rerere]
-        enabled = true
-        autoupdate = true
+    enabled = true
+    autoupdate = true
 [rebase]
-        autoSquash = true
-        autoStash = true
-        updateRefs = true
+    autoSquash = true
+    autoStash = true
+    updateRefs = true
